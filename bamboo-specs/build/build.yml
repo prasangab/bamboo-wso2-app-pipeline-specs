@@ -8,8 +8,8 @@ stages:
     manual: false
     final: false
     jobs:
-    - Default Job
-Default Job:
+    - Build CAR File
+Build CAR File:
   key: JOB1
   tasks:
   - checkout:
@@ -20,12 +20,12 @@ Default Job:
       jdk: JDK 11
       goal: clean install -Dmaven.test.skip=true
       description: Build the project
-  - maven:
-      executable: Maven 3
-      jdk: JDK 11
-      goal: clean install -U deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
-      tests: 'true'
-      description: Deploy to nexus
+  # - maven:
+  #     executable: Maven 3
+  #     jdk: JDK 11
+  #     goal: clean install -U deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
+  #     tests: 'true'
+  #     description: Deploy to nexus
   artifacts:
   - name: CApp
     location: HostReferenceProjectCompositeExporter/target
