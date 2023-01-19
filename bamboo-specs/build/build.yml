@@ -19,22 +19,22 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
-  - maven:
-      executable: Maven 3
-      jdk: JDK 11
-      goals: deploy
-      serverId: Nexus
-      pom: pom.xml
-      repositoryId: wso2-snapshot-artifacts
-      url: http://localhost:8081/repository
-      authentication:
-        username: admin
-        password: admin@123
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
-  #     goal: clean install -Dmaven.test.skip=true
-  #     description: Build the project
+  #     goals: deploy
+  #     serverId: Nexus
+  #     pom: pom.xml
+  #     repositoryId: wso2-snapshot-artifacts
+  #     url: http://localhost:8081/repository
+  #     authentication:
+  #       username: admin
+  #       password: admin@123
+  - maven:
+      executable: Maven 3
+      jdk: JDK 11
+      goal: deploy
+      description: Deploy artifacts into Nexus
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
