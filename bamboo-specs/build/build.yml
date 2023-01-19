@@ -33,10 +33,8 @@ Build CAR File:
   - maven:
       executable: Maven 3
       jdk: JDK 11
-      goal: deploy
+      goal: deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
       description: Deploy artifacts into Nexus
-      repositoryId: wso2-snapshot-artifacts
-      url: http://localhost:8081/repository
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
