@@ -19,7 +19,7 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
-    - script:
+  - script:
       interpreter: SHELL
       scripts:
       - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=wso2-snapshot-artifacts -Dfile=HostReferenceProjectCompositeExporter/target -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=1.0.0 -Dpackaging=pom'
