@@ -1,0 +1,62 @@
+version: 2
+plan:
+  project-key: WCAB
+  key: DEV
+  name: car-build
+stages:
+- Default Stage:
+    manual: false
+    final: false
+    jobs:
+    - Default Job
+Default Job:
+  key: JOB1
+  tasks:
+  - checkout:
+      force-clean-build: false
+      description: clone project
+  - maven:
+      executable: Maven 3
+      jdk: JDK 11
+      goal: clean install -Dmaven.test.skip=true
+      description: Build the project
+  - maven:
+      executable: Maven 3
+      jdk: JDK 11
+      goal: clean install -U deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
+      tests: 'true'
+      description: Deploy to nexus
+  artifacts:
+  - name: CApp
+    location: HostReferenceProjectCompositeExporter/target
+    pattern: '*.car'
+    shared: true
+    required: true
+  artifact-subscriptions: []
+repositories:
+- HostReferenceProject:
+    type: git
+    url: https://github.com/prasangab/hostreferenceproject
+    branch: develop
+    command-timeout-minutes: '180'
+    lfs: false
+    verbose-logs: false
+    use-shallow-clones: false
+    cache-on-agents: true
+    submodules: false
+    ssh-key-applies-to-submodules: true
+    fetch-all: false
+triggers: []
+branches:
+  create: manually
+  delete: never
+  link-to-jira: true
+notifications: []
+labels: []
+dependencies:
+  require-all-stages-passing: false
+  enabled-for-branches: true
+  block-strategy: none
+  plans: []
+other:
+  concurrent-build-plugin: system-default

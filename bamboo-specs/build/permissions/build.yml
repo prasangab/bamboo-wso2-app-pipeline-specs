@@ -1,0 +1,13 @@
+version: 2
+plan:
+  key: WCAB-DEV
+plan-permissions:
+- users:
+  - prabod
+  permissions:
+  - view
+  - edit
+  - build
+  - clone
+  - admin
+  - view-configuration
