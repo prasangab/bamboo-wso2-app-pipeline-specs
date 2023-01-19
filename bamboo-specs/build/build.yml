@@ -4,7 +4,7 @@ plan:
   key: CAR
   name: car-build
 stages:
-- Default Stage:
+- Build CAR Appication:
     manual: false
     final: false
     jobs:
@@ -15,11 +15,14 @@ Build CAR File:
   - checkout:
       force-clean-build: false
       description: clone project
-  - maven:
-      executable: Maven 3
-      jdk: JDK 11
-      goal: clean install -Dmaven.test.skip=true
-      description: Build the project
+  - script:
+      interpreter: system
+      inline: mvn clean install -DskipTests
+  # - maven:
+  #     executable: Maven 3
+  #     jdk: JDK 11
+  #     goal: clean install -Dmaven.test.skip=true
+  #     description: Build the project
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
