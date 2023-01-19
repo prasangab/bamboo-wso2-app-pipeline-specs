@@ -19,36 +19,10 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=wso2-snapshot-artifacts -Dfile=HostReferenceProjectCompositeExporter/target -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=1.0.0 -Dpackaging=pom'
   - script:
       interpreter: SHELL
       scripts:
       - 'curl -v -u admin:admin@123 --upload-file HostReferenceProjectCompositeExporter/target http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/1.0.0-SNAPSHOT/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car'
-  # - maven:
-  #     executable: Maven 3
-  #     jdk: JDK 11
-  #     goals: deploy
-  #     serverId: Nexus
-  #     pom: pom.xml
-  #     repositoryId: wso2-snapshot-artifacts
-  #     url: http://localhost:8081/repository
-  #     authentication:
-  #       username: admin
-  #       password: admin@123
-  # - maven:
-  #     executable: Maven 3
-  #     jdk: JDK 11
-  #     goal: deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
-  #     description: Deploy artifacts into Nexus
-  # - maven:
-  #     executable: Maven 3
-  #     jdk: JDK 11
-  #     goal: clean install -U deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
-  #     tests: 'true'
-  #     description: Deploy to nexus
   artifacts:
   - name: CApp
     location: HostReferenceProjectCompositeExporter/target
