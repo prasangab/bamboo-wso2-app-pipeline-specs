@@ -1,6 +1,6 @@
 version: 2
 plan:
-  key: WCAB-DEV
+  key: WCAB-CAR
 plan-permissions:
 - users:
   - prabod

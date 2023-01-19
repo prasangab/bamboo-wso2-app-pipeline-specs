@@ -1,7 +1,7 @@
 version: 2
 plan:
   project-key: WCAB
-  key: DEV
+  key: CAR
   name: car-build
 stages:
 - Default Stage:
