@@ -16,8 +16,10 @@ Build CAR File:
       force-clean-build: false
       description: clone project
   - script:
-      interpreter: system
-      inline: mvn clean install -DskipTests
+      interpreter: SHELL
+      scripts:
+      - 'mvn clean install -DskipTests'
+      # inline: mvn clean install -DskipTests
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
