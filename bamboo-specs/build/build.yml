@@ -19,6 +19,10 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
+  - script:
+      interpreter: SHELL
+      scripts:
+      - 'curl -v -F r=wso2-snapshot-artifacts -F hasPom=false -F e=pom -F g=com.your.group -F a=HostReferenceProject -F v=1.0.0 -F p=pom -F file=@HostReferenceProjectCompositeExporter/target -u admin:admin@123 http://localhost:8081/repository/wso2-snapshot-artifacts'
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
@@ -30,11 +34,11 @@ Build CAR File:
   #     authentication:
   #       username: admin
   #       password: admin@123
-  - maven:
-      executable: Maven 3
-      jdk: JDK 11
-      goal: deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
-      description: Deploy artifacts into Nexus
+  # - maven:
+  #     executable: Maven 3
+  #     jdk: JDK 11
+  #     goal: deploy -DaltDeploymentRepository=nexus-snapshot-repo::default::http://localhost:8081/repository/wso2-snapshot-artifacts
+  #     description: Deploy artifacts into Nexus
   # - maven:
   #     executable: Maven 3
   #     jdk: JDK 11
