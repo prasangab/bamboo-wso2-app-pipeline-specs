@@ -19,14 +19,12 @@ Build CAR File:
   - checkout:
       force-clean-build: false
       description: clone project
-  - script:
-      - echo 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+
   - script:
       interpreter: SHELL
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-      # - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-      - bamboo.variables['PROJECT_VERSION'] = "mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version"
+      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
       - echo ${bamboo.PROJECT_VERSION}
   - script:
       interpreter: SHELL
