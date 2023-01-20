@@ -24,9 +24,13 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+      # - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
+      # - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+      # - echo ${bamboo.PROJECT_VERSION}
+  - script:
+      interpreter: SHELL
+      scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
-      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-      - echo ${bamboo.PROJECT_VERSION}
   - script:
       interpreter: SHELL
       scripts:
@@ -34,7 +38,6 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
       - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
   # - script:
   #     interpreter: SHELL
