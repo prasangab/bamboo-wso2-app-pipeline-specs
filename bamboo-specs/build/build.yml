@@ -22,7 +22,11 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - 'curl -v -u admin:admin@123 --upload-file HostReferenceProjectCompositeExporter/target http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/1.0.0-SNAPSHOT/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car'
+      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=1.0.0 -Dpackaging=car'
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - 'curl -v -u admin:admin@123 --upload-file HostReferenceProjectCompositeExporter/target http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/1.0.0-SNAPSHOT/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car'
   artifacts:
   - name: CApp
     location: HostReferenceProjectCompositeExporter/target
