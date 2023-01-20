@@ -38,7 +38,7 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
+      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=1.0.0-SNAPSHOT -Dpackaging=car'
   # - script:
   #     interpreter: SHELL
   #     scripts:
