@@ -3,6 +3,9 @@ plan:
   project-key: WCAB
   key: CAR
   name: car-build
+
+variables:
+  PROJECT_VERSION: 
 stages:
 - Build CAR Appication:
     manual: false
@@ -15,6 +18,12 @@ Build CAR File:
   - checkout:
       force-clean-build: false
       description: clone project
+  - script:
+      - echo 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+  - script:
+      interpreter: SHELL
+      scripts:
+      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
   - script:
       interpreter: SHELL
       scripts:
