@@ -5,7 +5,8 @@ plan:
   name: car-build
 
 variables:
-  PROJECT_VERSION: 
+  PROJECT_VERSION: ""
+
 stages:
 - Build CAR Appication:
     manual: false
@@ -24,6 +25,7 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+      - echo ${bamboo.PROJECT_VERSION}
   - script:
       interpreter: SHELL
       scripts:
