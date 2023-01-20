@@ -34,6 +34,14 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
+      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+  - script:
+      interpreter: SHELL
+      scripts:
+      - echo "${bamboo.PROJECT_VERSION}"
+  - script:
+      interpreter: SHELL
+      scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
   - script:
       interpreter: SHELL
