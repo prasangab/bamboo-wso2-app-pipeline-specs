@@ -5,7 +5,7 @@ plan:
   name: car-build
 
 variables:
-  PROJECT_VERSION: ""
+  PROJECT_VERSION: "1.0.0-SNAPSHOT"
 
 stages:
 - Build CAR Appication:
@@ -31,14 +31,14 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
-  - script:
-      interpreter: SHELL
-      scripts:
-      - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-  - script:
-      interpreter: SHELL
-      scripts:
-      - echo "${bamboo.PROJECT_VERSION}"
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - echo "${bamboo.PROJECT_VERSION}"
   - script:
       interpreter: SHELL
       scripts:
@@ -46,7 +46,7 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=1.0.0-SNAPSHOT -Dpackaging=car'
+      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car -DgroupId=com.wso2.reference -DartifactId=HostReferenceProject -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
   # - script:
   #     interpreter: SHELL
   #     scripts:
