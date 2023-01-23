@@ -35,7 +35,7 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - echo "${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'"
+      - export BAMBOO_PLAN_VARIABLES= "PROJECT_VERSION = mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version"
   - script:
       interpreter: SHELL
       scripts:
