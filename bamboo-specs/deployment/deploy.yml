@@ -25,9 +25,14 @@ DEV:
   #     - curl -X GET "http://localhost:8081/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=snapshots&v=LATEST"
   #     description: Download artifcats from nexus
   - script:
-    - export ARTIFACT_URL=$(curl -L -X GET "http://localhost:8081/service/rest/v1/search/assets/download?sort=version&repository=wso2-snapshot-artifacts&maven.groupId=${bamboo.GROUP_ID}&maven.artifactId=${bamboo.ARTIFACT_ID}&maven.extension=car" -H "accept: application/json")
-    - echo "URL=$ARTIFACT_URL"
-    - curl -X GET --user admin:admin@123 ${ARTIFACT_URL} -o ${bamboo.ARTIFACT_ID}-${bamboo.PROJECT_VERSION}.car
+      interpreter: SHELL
+      scripts:
+      - wget --user=admin --password=admin@123 "http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/latest/HostReferenceProject-latest.car"
+      description: Download artifcats from nexus
+  # - script:
+  #   - export ARTIFACT_URL=$(curl -s -u admin:admin@123 -X GET "http://localhost:8081/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=wso2-snapshot-artifacts&v=LATEST" | jq -r '.items[0].assets[0].downloadUrl')
+  #   - echo "URL=$ARTIFACT_URL"
+  #   - curl -X GET --user admin:admin@123 ${ARTIFACT_URL} -o ${bamboo.ARTIFACT_ID}-${bamboo.PROJECT_VERSION}.car
   - script:
       interpreter: SHELL
       scripts:
