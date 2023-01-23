@@ -24,7 +24,7 @@ DEV:
   #     scripts:
   #     - wget --user=admin --password=admin@123 http://localhost:8081/service/local/artifact/maven/redirect?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&v=LATEST
   #     description: Download artifcats from nexus
-  script:
+  - script:
     - export ARTIFACT_URL=$(curl -s -X GET "${NEXUS_URL}/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=snapshots&v=LATEST" | jq -r '.items[0].assets[0].downloadUrl')
     - curl -X GET --user admin:admin@123 ${ARTIFACT_URL} -o ${bamboo.ARTIFACT_ID}-${bamboo.PROJECT_VERSION}.car
   - script:
