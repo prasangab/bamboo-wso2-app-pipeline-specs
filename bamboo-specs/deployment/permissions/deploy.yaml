@@ -1,0 +1,27 @@
+version: 2
+deployment:
+  name: Deploy
+deployment-permissions:
+- users:
+  - prabod
+  permissions:
+  - view
+  - edit
+  - view-configuration
+environment-permissions:
+- DEV:
+  - users:
+    - prabod
+    permissions:
+    - view
+    - edit
+    - deploy
+    - view-configuration
+- ACC:
+  - users:
+    - prabod
+    permissions:
+    - view
+    - edit
+    - deploy
+    - view-configuration

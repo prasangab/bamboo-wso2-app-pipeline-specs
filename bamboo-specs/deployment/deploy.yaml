@@ -1,0 +1,46 @@
+version: 2
+deployment:
+  name: Deploy
+  source-plan: WCAB-CAR
+  description: Deploy artifacts
+release-naming:
+  next-version-name: release-1
+  applies-to-branches: false
+  auto-increment: true
+  auto-increment-variables: []
+environments:
+- DEV
+- ACC
+DEV:
+  triggers: &id001 []
+  tasks:
+  - clean
+  - artifact-download:
+      artifacts:
+      - name: CApp
+      description: Download release contents
+  - script:
+      interpreter: SHELL
+      scripts:
+      - echo "deploying to dev"
+      description: deploy to dev
+  final-tasks: []
+  variables: {}
+  requirements: []
+  notifications: []
+ACC:
+  triggers: *id001
+  tasks:
+  - clean
+  - artifact-download:
+      artifacts:
+      - {}
+      description: Download release contents
+  - script:
+      interpreter: SHELL
+      scripts:
+      - echo "deploying to acc"
+  final-tasks: []
+  variables: {}
+  requirements: []
+  notifications: []

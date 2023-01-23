@@ -3,3 +3,9 @@
 !include 'build/build.yml'
 ---
 !include 'build/permissions/build.yml'
+
+# Environment Deployments
+---
+!include 'deployment/deploy.yml'
+---
+!include 'deployment/permissions/deploy.yml'
