@@ -39,7 +39,7 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - export bamboo.PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+      - export PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
   - script:
       interpreter: SHELL
       scripts:
