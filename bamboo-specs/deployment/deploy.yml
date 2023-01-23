@@ -15,10 +15,10 @@ DEV:
   triggers: &id001 []
   tasks:
   - clean
-  - artifact-download:
-      artifacts:
-      - name: CApp
-      description: Download release contents
+  # - artifact-download:
+  #     artifacts:
+  #     - name: CApp
+  #     description: Download release contents
   - script:
       interpreter: SHELL
       scripts:
@@ -32,10 +32,10 @@ ACC:
   triggers: *id001
   tasks:
   - clean
-  - artifact-download:
-      artifacts:
-      - {}
-      description: Download release contents
+  # - artifact-download:
+  #     artifacts:
+  #     - {}
+  #     description: Download release contents
   - script:
       interpreter: SHELL
       scripts:
