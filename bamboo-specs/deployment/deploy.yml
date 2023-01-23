@@ -29,9 +29,10 @@ DEV:
         scripts:
         - |-
           #!/bin/bash
-          latest_version=$(curl -u admin:admin@123 -X GET "http://localhost:8081/service/rest/v1/search?repository=wso2-snapshot-artifacts&group=com.wso2.reference&name=HostReferenceProject" | jq -r '.items[-1].version')
+          latest_version=$(curl -u admin:admin@123 -X GET "http://localhost:8081/service/rest/v1/search?repository=wso2-snapshot-artifacts&group=com.wso2.reference&name=${bamboo.ARTIFACT_ID}" | jq -r '.items[-1].version')
           echo "l_version=$latest_version"
-          wget --user=admin --password=admin@123 "http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/$latest_version/HostReferenceProject-$latest_version-SNAPSHOT.car"
+          curl -u admin:admin@123 -O "http://localhost:8081/repository/wso2-snapshot-artifacts/${bamboo.GROUP_ID}/${bamboo.ARTIFACT_ID}/${bamboo.PROJECT_VERSION}/${bamboo.ARTIFACT_ID}-$latest_version.car"
+          ls -al
   # - script:
   #     interpreter: SHELL
   #     scripts:
