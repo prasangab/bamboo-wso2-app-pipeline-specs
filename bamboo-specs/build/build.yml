@@ -5,7 +5,7 @@ plan:
   name: car-build
 
 variables:
-  PROJECT_VERSION: "1.0.0-SNAPSHOT"
+  PROJECT_VERSION: ""
   ARTIFACT_ID: "HostReferenceProject"
 
 stages:
@@ -39,7 +39,7 @@ Build CAR File:
   - script:
       interpreter: SHELL
       scripts:
-      - export PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+      - export bamboo.PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
   - script:
       interpreter: SHELL
       scripts:
