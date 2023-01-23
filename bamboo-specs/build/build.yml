@@ -9,7 +9,7 @@ variables:
   ARTIFACT_ID: "HostReferenceProject"
   GROUP_ID: "com.wso2.reference"
   NEXUS_USER: "BAMSCRT@0@0@tHnak4yK8PsitKop/CRvvQ=="
-  NEXUS_PASS: "BAMSCRT@0@0@vc6/XYh0rrkAZw6BjuwCCw=="
+  NEXUS_PASSWORD: "BAMSCRT@0@0@vc6/XYh0rrkAZw6BjuwCCw=="
 
 stages:
 - Build CAR Appication:
