@@ -26,7 +26,7 @@ DEV:
   #     description: Download artifcats from nexus
   - script:
     - export ARTIFACT_URL=$(curl -s -X GET "http://localhost:8081/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=wso2-snapshot-artifacts&v=LATEST" | jq -r '.items[0].assets[0].downloadUrl')
-    - echo $ARTIFACT_URL
+    - echo "URL=$ARTIFACT_URL"
     - curl -X GET --user admin:admin@123 ${ARTIFACT_URL} -o ${bamboo.ARTIFACT_ID}-${bamboo.PROJECT_VERSION}.car
   - script:
       interpreter: SHELL
