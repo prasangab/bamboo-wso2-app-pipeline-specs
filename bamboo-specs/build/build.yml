@@ -25,13 +25,11 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-      # - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
-      # - ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-      # - echo ${bamboo.PROJECT_VERSION}
-  - script:
-      interpreter: SHELL
-      scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
   # - script:
   #       interpreter: SHELL
   #       scripts:
@@ -55,10 +53,6 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/${bamboo.ARTIFACT_ID}CompositeExporter_${bamboo.PROJECT_VERSION}.car -DgroupId=com.wso2.reference -DartifactId=${bamboo.ARTIFACT_ID} -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - 'curl -v -u admin:admin@123 --upload-file HostReferenceProjectCompositeExporter/target http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/1.0.0-SNAPSHOT/HostReferenceProjectCompositeExporter_1.0.0-SNAPSHOT.car'
   artifacts:
   - name: CApp
     location: ${bamboo.ARTIFACT_ID}CompositeExporter/target
