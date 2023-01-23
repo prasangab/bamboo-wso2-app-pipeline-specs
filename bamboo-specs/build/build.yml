@@ -33,33 +33,32 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
-  - script:
-        interpreter: SHELL
-        scripts:
-        - |-
-          #!/bin/bash
-          PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
-          echo "P_VERSION=$PROJECT_VERSION"
-          ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
-          echo "A_ID=$ARTIFACT_ID"
-          "mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/HostReferenceProjectCompositeExporter_${PROJECT_VERSION}.car -DgroupId=com.wso2.reference -DartifactId=${ARTIFACT_ID} -Dversion=${PROJECT_VERSION} -Dpackaging=car"
+  # - script:
+  #       interpreter: SHELL
+  #       scripts:
+  #       - |-
+  #         #!/bin/bash
+  #         PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
+  #         echo "P_VERSION=$PROJECT_VERSION"
+  #         ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
+  #         echo "A_ID=$ARTIFACT_ID"
 
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - export PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - echo "bamboo.PROJECT_VERSION=${PROJECT_VERSION}"
+  - script:
+      interpreter: SHELL
+      scripts:
+      - export PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
+  - script:
+      interpreter: SHELL
+      scripts:
+      - echo "bamboo.PROJECT_VERSION=${PROJECT_VERSION}"
   # - script:
   #     interpreter: SHELL
   #     scripts:
   #     - 'mvn clean install -Dmaven.test.skip=true'
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/${bamboo.ARTIFACT_ID}CompositeExporter_${bamboo.PROJECT_VERSION}.car -DgroupId=com.wso2.reference -DartifactId=${bamboo.ARTIFACT_ID} -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
+  - script:
+      interpreter: SHELL
+      scripts:
+      - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/${bamboo.ARTIFACT_ID}CompositeExporter_${bamboo.PROJECT_VERSION}.car -DgroupId=com.wso2.reference -DartifactId=${bamboo.ARTIFACT_ID} -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
   artifacts:
   - name: ${bamboo.ARTIFACT_ID}CApp
     location: ${bamboo.ARTIFACT_ID}CompositeExporter/target
