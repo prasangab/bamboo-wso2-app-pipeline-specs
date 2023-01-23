@@ -42,7 +42,7 @@ Build CAR File:
           echo "P_VERSION=$PROJECT_VERSION"
           ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
           echo "A_ID=$ARTIFACT_ID"
-          bamboo-cli --folder . --entry addVariable --variable PROJECT_VERSION --value $PROJECT_VERSION
+          echo "PROJECT_VERSION=$PROJECT_VERSION" >> ${bamboo.build.working.directory}/bamboo-variables.properties
 
   # - script:
   #     interpreter: SHELL
