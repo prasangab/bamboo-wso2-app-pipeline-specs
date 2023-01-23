@@ -33,24 +33,25 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn clean install -Dmaven.test.skip=true'
-  # - script:
-  #       interpreter: SHELL
-  #       scripts:
-  #       - |-
-  #         #!/bin/bash
-  #         PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
-  #         echo "P_VERSION=$PROJECT_VERSION"
-  #         ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
-  #         echo "A_ID=$ARTIFACT_ID"
+  - script:
+        interpreter: SHELL
+        scripts:
+        - |-
+          #!/bin/bash
+          PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
+          echo "P_VERSION=$PROJECT_VERSION"
+          ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
+          echo "A_ID=$ARTIFACT_ID"
+          bamboo-cli --folder . --entry addVariable --variable PROJECT_VERSION --value $PROJECT_VERSION
 
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - export PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
   - script:
       interpreter: SHELL
       scripts:
-      - export PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
-  - script:
-      interpreter: SHELL
-      scripts:
-      - echo "bamboo.PROJECT_VERSION=${PROJECT_VERSION}"
+      - echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
   # - script:
   #     interpreter: SHELL
   #     scripts:
