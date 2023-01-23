@@ -1,6 +1,6 @@
 version: 2
 deployment:
-  name: Deploy
+  name: Deploy into environments
   source-plan: WCAB-CAR
   description: Deploy artifacts
 release-naming:
