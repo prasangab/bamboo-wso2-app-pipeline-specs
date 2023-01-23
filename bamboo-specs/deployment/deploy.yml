@@ -15,33 +15,15 @@ DEV:
   triggers: &id001 []
   tasks:
   - clean
-  # - artifact-download:
-  #     artifacts:
-  #     - name: CApp
-  #     description: Download release contents
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - curl -X GET "http://localhost:8081/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=snapshots&v=LATEST"
-  #     description: Download artifcats from nexus
   - script:
         interpreter: SHELL
         scripts:
         - |-
           #!/bin/bash
-          latest_version=$(curl -u admin:admin@123 -X GET "http://localhost:8081/service/rest/v1/search?repository=wso2-snapshot-artifacts&group=com.wso2.reference&name=${bamboo.ARTIFACT_ID}" | jq -r '.items[-1].version')
+          latest_version=$(curl -u ${bamboo.NEXUS_USER}:${bamboo.NEXUS_PASS} -X GET "http://localhost:8081/service/rest/v1/search?repository=wso2-snapshot-artifacts&group=com.wso2.reference&name=${bamboo.ARTIFACT_ID}" | jq -r '.items[-1].version')
           echo "l_version=$latest_version"
-          curl -u admin:admin@123 -O "http://localhost:8081/repository/wso2-snapshot-artifacts/${bamboo.GROUP_ID}/${bamboo.ARTIFACT_ID}/${bamboo.PROJECT_VERSION}/${bamboo.ARTIFACT_ID}-$latest_version.car"
+          curl -u ${bamboo.NEXUS_USER}:${bamboo.NEXUS_PASS} -O "http://localhost:8081/repository/wso2-snapshot-artifacts/${bamboo.GROUP_ID}/${bamboo.ARTIFACT_ID}/${bamboo.PROJECT_VERSION}/${bamboo.ARTIFACT_ID}-$latest_version.car"
           ls -al
-  # - script:
-  #     interpreter: SHELL
-  #     scripts:
-  #     - wget --user=admin --password=admin@123 "http://localhost:8081/repository/wso2-snapshot-artifacts/com.wso2.reference/HostReferenceProject/latest/HostReferenceProject-latest.car"
-  #     description: Download artifcats from nexus
-  # - script:
-  #   - export ARTIFACT_URL=$(curl -s -u admin:admin@123 -X GET "http://localhost:8081/service/rest/v1/search?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&repository=wso2-snapshot-artifacts&v=LATEST" | jq -r '.items[0].assets[0].downloadUrl')
-  #   - echo "URL=$ARTIFACT_URL"
-  #   - curl -X GET --user admin:admin@123 ${ARTIFACT_URL} -o ${bamboo.ARTIFACT_ID}-${bamboo.PROJECT_VERSION}.car
   - script:
       interpreter: SHELL
       scripts:
