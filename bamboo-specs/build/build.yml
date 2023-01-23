@@ -33,13 +33,19 @@ Build CAR File:
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
   - script:
-      interpreter: SHELL
-      scripts:
-      - export BAMBOO_PLAN_VARIABLES= "PROJECT_VERSION = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'"
+        interpreter: SHELL
+        scripts:
+        - |-
+          #!/bin/bash
+          ${bamboo.AZURE_SCALESET_VMSS_IMAGE} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+          echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
+  # - script:
+  #     interpreter: SHELL
+  #     scripts:
+  #     - export BAMBOO_PLAN_VARIABLES= "PROJECT_VERSION = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'"
   - script:
       interpreter: SHELL
       scripts:
-
       - echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
   - script:
       interpreter: SHELL
