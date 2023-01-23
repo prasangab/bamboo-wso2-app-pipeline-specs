@@ -3,9 +3,6 @@ deployment:
   name: Deploy into environments
   source-plan: WCAB-CAR
   description: Deploy artifacts
-variables:
-  GROUP_ID: "com.wso2.reference"
-  ARTIFACT_ID: "HostReferenceProject"
 release-naming:
   next-version-name: release-1
   applies-to-branches: false
