@@ -34,10 +34,8 @@ Build CAR File:
         scripts:
         - |-
           #!/bin/bash
-          PROJECT_VERSION='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-          echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
-          VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
-          echo $VERSION
+          PROJECT_VERSION=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive -q)
+          echo $PROJECT_VERSION
 
   - script:
       interpreter: SHELL
