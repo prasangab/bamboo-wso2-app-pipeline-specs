@@ -53,7 +53,7 @@ Build CAR File:
       scripts:
       - 'mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/${bamboo.ARTIFACT_ID}CompositeExporter_${bamboo.PROJECT_VERSION}.car -DgroupId=com.wso2.reference -DartifactId=${bamboo.ARTIFACT_ID} -Dversion=${bamboo.PROJECT_VERSION} -Dpackaging=car'
   artifacts:
-  - name: CApp
+  - name: ${bamboo.ARTIFACT_ID}CApp
     location: ${bamboo.ARTIFACT_ID}CompositeExporter/target
     pattern: '*.car'
     shared: true
