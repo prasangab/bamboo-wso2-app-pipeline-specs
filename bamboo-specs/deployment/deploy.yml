@@ -22,7 +22,7 @@ DEV:
   - script:
       interpreter: SHELL
       scripts:
-      - wget --user=admin --password=admin@123 http://http://localhost:8081/service/local/artifact/maven/redirect?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&v=LATEST
+      - wget --user=admin --password=admin@123 http://localhost:8081/service/local/artifact/maven/redirect?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&v=LATEST
       description: Download artifcats from nexus
   - script:
       interpreter: SHELL
