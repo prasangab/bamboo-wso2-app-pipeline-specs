@@ -3,6 +3,9 @@ deployment:
   name: Deploy into environments
   source-plan: WCAB-CAR
   description: Deploy artifacts
+variables:
+  GROUP_ID: "com.wso2.reference"
+  ARTIFACT_ID: "HostReferenceProject"
 release-naming:
   next-version-name: release-1
   applies-to-branches: false
@@ -19,6 +22,11 @@ DEV:
   #     artifacts:
   #     - name: CApp
   #     description: Download release contents
+  - script:
+      interpreter: SHELL
+      scripts:
+      - wget --user=admin --password=admin@123 http://http://localhost:8081/service/local/artifact/maven/redirect?g=${bamboo.GROUP_ID}&a=${bamboo.ARTIFACT_ID}&v=LATEST
+      description: Download artifcats from nexus
   - script:
       interpreter: SHELL
       scripts:
