@@ -42,7 +42,7 @@ Build CAR File:
           echo "P_VERSION=$PROJECT_VERSION"
           ARTIFACT_ID=$(mvn exec:exec -Dexec.executable='echo' -Dexec.args='${project.artifactId}' --non-recursive -q)
           echo "A_ID=$ARTIFACT_ID"
-          "mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/$ARTIFACT_IDCompositeExporter_$PROJECT_VERSION.car -DgroupId=com.wso2.reference -DartifactId=$ARTIFACT_ID -Dversion=$PROJECT_VERSION -Dpackaging=car"
+          "mvn deploy:deploy-file -Durl=http://localhost:8081/repository/wso2-snapshot-artifacts -DrepositoryId=nexus-snapshot-repo -Dfile=HostReferenceProjectCompositeExporter/target/${ARTIFACT_ID}CompositeExporter_$PROJECT_VERSION.car -DgroupId=com.wso2.reference -DartifactId=$ARTIFACT_ID -Dversion=$PROJECT_VERSION -Dpackaging=car"
 
   # - script:
   #     interpreter: SHELL
