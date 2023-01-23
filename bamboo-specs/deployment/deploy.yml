@@ -30,6 +30,10 @@ DEV:
   - script:
       interpreter: SHELL
       scripts:
+      - ls -al
+  - script:
+      interpreter: SHELL
+      scripts:
       - echo "deploying to dev"
       description: deploy to dev
   final-tasks: []
