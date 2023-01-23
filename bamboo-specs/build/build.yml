@@ -29,13 +29,13 @@ Build CAR File:
       interpreter: SHELL
       scripts:
       - 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.artifactId'
-  # - script:
-  #       interpreter: SHELL
-  #       scripts:
-  #       - |-
-  #         #!/bin/bash
-  #         ${bamboo.PROJECT_VERSION} = 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
-  #         echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
+  - script:
+        interpreter: SHELL
+        scripts:
+        - |-
+          #!/bin/bash
+          ${bamboo.PROJECT_VERSION}='mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version'
+          echo "bamboo.PROJECT_VERSION=${bamboo.PROJECT_VERSION}"
   - script:
       interpreter: SHELL
       scripts:
